@@ -1,0 +1,27 @@
+.editor-header{
+    display: flex;
+    color: black;
+    font-weight: 600;
+    justify-content: space-between;
+    padding: 10px 20px;
+    width: 650px;
+}
+#dropdawn, #themes{
+    color: black;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+#dropdawn option{
+    color: black;
+    font-weight: 600;
+} 
+
+#themes option{
+    color: black;
+    font-weight: 600;
+
+}
+.codemirror{
+    font-weight: 800;
+}

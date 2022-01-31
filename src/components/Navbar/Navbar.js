@@ -2,12 +2,12 @@ import React from 'react';
 import './../Navbar/navbar.css';
 const Navbar = () => {
   return <header>
-  <div class="logo">
-      <h3>Coding Assignment</h3>
+  <div className="logo">
+      <h3>Hming ala neilo</h3>
     </div>
-  <nav class="nav-bar">
+  <nav className="nav-bar">
     
-    <ul class="nav-ul">
+    <ul className="nav-ul">
       
       <li>
       <a href="#">Home</a>
@@ -15,7 +15,9 @@ const Navbar = () => {
       <li>
       <a href="#">Profile</a>
       </li>
-     
+      <li>
+          <a href="#">Practice</a>
+      </li>
       <li>
           <a href="#">Register</a>
       </li>
