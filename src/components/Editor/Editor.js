@@ -4,6 +4,12 @@ import AceEditor from 'react-ace';
 import brace from 'brace';
 
 import 'brace/mode/java';
+import 'brace/mode/c_cpp';
+
+import 'brace/mode/php';
+import 'brace/mode/python';
+
+
 import 'brace/theme/monokai';
 import 'brace/theme/sqlserver';
 import 'brace/theme/solarized_dark';
@@ -12,7 +18,7 @@ import 'brace/theme/cobalt';
 import 'brace/theme/dracula';
 const Editor = () => {
   const [code,setCode] = useState('');
-  const [lang,setLang] = useState('c');
+  const [lang,setLang] = useState('c_cpp');
   const [theme,setTheme] = useState('cobalt')
   return <>
   <div className='editor-header'>
@@ -23,8 +29,8 @@ const Editor = () => {
           const selectedLang = e.target.value;
           setLang(selectedLang);
         }}>
-          <option value="c">C</option>
-          <option value="c++">C++</option>
+          <option value="c_cpp">C</option>
+          <option value="c_cpp">C++</option>
           <option value="java">Java</option>
           <option value="php">PHP</option>
           <option value="python">Python</option>
