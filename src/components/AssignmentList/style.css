@@ -1,8 +1,10 @@
+
+  
 .container{
     /* background-color: blanchedalmond; */
     max-width: 90%;
     margin: 20px auto;
-    border-radius: 1.2rem;
+    /* border-radius: 1.2rem; */
     background:#24252A;
     height: 80vh;
     display: flex;
@@ -15,10 +17,10 @@
     flex-grow: 3;
     overflow: hidden;
     overflow-y: scroll;
-    border-radius: 1.2rem;
+    /* border-radius: 1.2rem; */
 }
 .assignment{
-    background: #24252A;
+    /* background: #24252A; */
     width: 100%;
     padding: 12px 20px;
     display: flex;
