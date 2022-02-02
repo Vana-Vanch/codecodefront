@@ -6,7 +6,8 @@ import AssignmentList from './components/AssignmentList/AssignmentList';
 import Announcement from './components/Announcement/Announcement';
 import Profile from './components/Profile/Profile';
 import Practice from './components/Practice/Practice';
-
+import Registration from './components/Registration/Registration';
+import Login from './components/Login/Login';
 function App() {
   return (
     <div>
@@ -14,7 +15,9 @@ function App() {
     {/* <Editor /> */}
     {/* <AssignmentList /> */}
     {/* <Profile /> */}
-    <Practice />
+    {/* <Practice /> */}
+    {/* <Registration /> */}
+    <Login />
     </div>
   );
 }
