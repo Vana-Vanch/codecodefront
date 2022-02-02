@@ -5,6 +5,7 @@ import Editor from './components/Editor/Editor';
 import AssignmentList from './components/AssignmentList/AssignmentList';
 import Announcement from './components/Announcement/Announcement';
 import Profile from './components/Profile/Profile';
+import Practice from './components/Practice/Practice';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
     <Navbar />
     {/* <Editor /> */}
     {/* <AssignmentList /> */}
-    <Profile />
+    {/* <Profile /> */}
+    <Practice />
     </div>
   );
 }

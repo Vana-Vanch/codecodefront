@@ -1,0 +1,20 @@
+.prac-container{
+    max-width: 55%;
+    margin: auto;
+    /* background: red; */
+}
+
+.prac-run{
+    padding: 7px 20px;
+    margin-top: 10px;
+    background-color: rgba(0,136,169,1);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.prac-run:hover{
+    padding: 7px 20px;
+    margin-top: 10px;
+    background-color: rgba(0,136,169,0.8);
+    border-radius: 5px;
+}
