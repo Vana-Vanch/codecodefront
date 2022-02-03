@@ -18,3 +18,10 @@
     background-color: rgba(0,136,169,0.8);
     border-radius: 5px;
 }
+.sub-container{
+   
+ 
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}

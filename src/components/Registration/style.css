@@ -128,3 +128,14 @@ form .regis-btb button:hover{
    
     padding: 10px 10px;
 }
+.selection{
+    padding: 5px 5px;
+    margin-left: 10px;
+}
+.prop-con{
+   
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

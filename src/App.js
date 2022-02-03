@@ -8,6 +8,7 @@ import Profile from './components/Profile/Profile';
 import Practice from './components/Practice/Practice';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
+import MainAssignment from './components/MainAssignment/MainAssignment';
 function App() {
   return (
     <div>
@@ -17,7 +18,8 @@ function App() {
     {/* <Profile /> */}
     {/* <Practice /> */}
     {/* <Registration /> */}
-    <Login />
+    {/* <Login /> */}
+    <MainAssignment />
     </div>
   );
 }
