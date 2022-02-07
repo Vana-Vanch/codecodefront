@@ -30,16 +30,17 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
 const Practice = () => {
-    const [defaultmode,setDefaultMode] = useState('c_cpp');
+    
     const [code,setCode] = useState('');
-    const [lang,setLang] = useState('c_cpp');
+    const [lang,setLang] = useState('python');
     const [theme,setTheme] = useState('cobalt');
+    const [curlang,setCurlang] = useState('python');
 
     const getCode = () => {
-
+        console.log(curlang);
    
         const codes = code;
-        const language = lang;
+        const language = curlang;
         const bodies = {
           codes,
           language
@@ -67,18 +68,25 @@ const Practice = () => {
 
             const selectedLang = e.target.value;
             if(selectedLang === 'c' || selectedLang === 'cpp'){
+              if(selectedLang ==='c'){
+                setCurlang('c');
+              }else if(selectedLang === 'cpp'){
+                setCurlang('cpp');
+              }
               setLang('c_cpp');
             }else{
               setLang(selectedLang);
+              setCurlang(selectedLang)
             }
             
             
           }}>
+            <option value="python">Python</option>
             <option value="c">C</option>
             <option value="cpp">C++</option>
             <option value="javascript">Javascript</option>
             <option value="php">PHP</option>
-            <option value="python">Python</option>
+            
           </select>
           Themes
           <select name="themes" id="themes" onChange={(e)=>{
