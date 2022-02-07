@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import './../Practice/style.css';
+import axios from 'axios';
+
+
 
 import AceEditor from 'react-ace';
 import brace from 'brace';
 
 import 'brace/mode/java';
 import 'brace/mode/c_cpp';
-
+import 'brace/mode/javascript';
 import 'brace/mode/php';
 import 'brace/mode/python';
 
@@ -18,15 +21,39 @@ import 'brace/theme/solarized_light';
 import 'brace/theme/cobalt';
 import 'brace/theme/dracula';
 
+axios.defaults.baseURL = 'http://localhost:8000/';
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+
+
 
 const Practice = () => {
+    const [defaultmode,setDefaultMode] = useState('c_cpp');
     const [code,setCode] = useState('');
     const [lang,setLang] = useState('c_cpp');
     const [theme,setTheme] = useState('cobalt');
 
     const getCode = () => {
-        console.log(code);
-        const codeOutput = document.getElementById('prac-output').value = code;
+
+   
+        const codes = code;
+        const language = lang;
+        const bodies = {
+          codes,
+          language
+        };
+        axios.get('/sanctum/csrf-cookie').then(response => {
+          axios.post('/api/practice', bodies).then(res=>{
+         
+            const codeOutput = res.data[0];
+            console.log(codeOutput);
+            document.getElementById('prac-output').value = codeOutput;
+          })
+        })
+  
+  
     }
 
     return <>
@@ -37,12 +64,19 @@ const Practice = () => {
       <div className='options-container'>
           Language
           <select name="dropdawn" id="dropdawn" onChange={(e)=>{
+
             const selectedLang = e.target.value;
-            setLang(selectedLang);
+            if(selectedLang === 'c' || selectedLang === 'cpp'){
+              setLang('c_cpp');
+            }else{
+              setLang(selectedLang);
+            }
+            
+            
           }}>
-            <option value="c_cpp">C</option>
-            <option value="c_cpp">C++</option>
-            <option value="java">Java</option>
+            <option value="c">C</option>
+            <option value="cpp">C++</option>
+            <option value="javascript">Javascript</option>
             <option value="php">PHP</option>
             <option value="python">Python</option>
           </select>

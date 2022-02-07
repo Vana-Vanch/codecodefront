@@ -2,6 +2,7 @@
     max-width: 55%;
     margin: auto;
     /* background: red; */
+   
 }
 
 .prac-run{
@@ -24,4 +25,8 @@
     width: 30%;
     display: flex;
     justify-content: space-between;
+}
+.prac-body{
+    height: 100vh;
+    background: linear-gradient(135deg, #0088a9, #24252A);
 }
