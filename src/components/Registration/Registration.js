@@ -1,27 +1,61 @@
+import axios from 'axios';
 import React, {useState} from 'react';
 import './../Registration/style.css';
+import {useNavigate} from "react-router-dom";
+
+axios.defaults.baseURL = 'http://localhost:8000/';
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+
+
 const Registration = () => {
-    const [name,setName] = useState('');
-    const [email,setEmail] = useState('');
-    const [rollno,setRollno] = useState('');
-    const [password,setPassword] = useState('');
-    const [passwordConfirmation, setPasswordConfirmation] = useState('');
-    const [course,setCourse] = useState('');
-    const [picture,setPicture] = useState([]);
-  return <>
+    let navigate = useNavigate();
+    const [uname,setName] = useState('');
+    const [uemail,setEmail] = useState('');
+    const [urollno,setRollno] = useState('');
+    const [upassword,setPassword] = useState('');
+    const [upasswordConfirmation, setPasswordConfirmation] = useState('');
+    const [ucourse,setCourse] = useState('BCA');
+    // const [ppic,setPicture] = useState('');
+    const registerHandler = () =>{
+
+        const name = uname;
+        const email = uemail;
+        const rollno = urollno;
+        const password =upassword;
+        const password_confirmation = upasswordConfirmation;
+        const udatas = {
+            name,
+            email,
+            rollno,
+            password,
+            password_confirmation
+        };
+        axios.get('/sanctum/csrf-cookie').then(response=>{
+            axios.post('/api/register',udatas ).then(res=>{
+                console.log(res.data.message);
+                if(res.data.message === 'success'){
+                    navigate("/login");
+                }
+            })
+        })
+}
+    return <>
     <section className='regis-body'>
   <div className='registration-container'>
         <div className="registration-title">
             Registration
         </div>
-        <form action="#" >
+        <form action="#" encType='multipart/form-data'>
             <div className="user-details">
                 <div className="input-box">
                     <span className="details">
                         Name
                     </span>
                     <input type="text" 
-                    value={name}
+                    value={uname}
                     onChange={(e)=>{
                         setName(e.target.value);
                        
@@ -34,7 +68,7 @@ const Registration = () => {
                         Email
                     </span>
                     <input type="text" 
-                    value={email}
+                    value={uemail}
                     onChange={(e)=>{
                         setEmail(e.target.value);
                     }}
@@ -46,7 +80,7 @@ const Registration = () => {
                         Rollno
                     </span>
                     <input type="text"
-                        value={rollno}
+                        value={urollno}
                         onChange={(e)=>{
                             setRollno(e.target.value);
                         }}
@@ -58,7 +92,7 @@ const Registration = () => {
                         Password
                     </span>
                     <input type="password" 
-                    value={password}
+                    value={upassword}
                     onChange={e => {
                         setPassword(e.target.value);
                     }}
@@ -69,7 +103,7 @@ const Registration = () => {
                         Confirm Password
                     </span>
                     <input type="passord" 
-                    value={passwordConfirmation}
+                    value={upasswordConfirmation}
                     onChange={e => {
                         setPasswordConfirmation(e.target.value);
                     }}
@@ -78,25 +112,13 @@ const Registration = () => {
                 </div>
               
             </div>
-            <div className="upload-box">
-                    <span className="details">
-                        Upload Profile Pictures
-                    </span>
-                    <input type="file" 
-               
-                    onChange={e => {
-                 
-                        setPicture([...picture,e.target.files[0]]);
-                    }}
-                    />
-                </div>
             <div className="course-detail">
                 <input type="radio"
-                value={course}
+                value={ucourse}
            
                 name="course" id="dot-1"/>
                 <input type="radio"
-                 value={course}
+                 value={ucourse}
                
                
                  name="course" 
@@ -108,25 +130,9 @@ const Registration = () => {
                     <option value="BCA">BCA</option>
                     <option value="MCA">MCA</option>
                 </select>
-                {/* <div className="category">
-                    <label htmlFor="dot-1">
-                        <span className="dot one"></span>
-                        <span className="course">BCA</span>
-                    </label>
-                    <label htmlFor="dot-2">
-                        <span className="dot two"></span>
-                        <span className="course">MCA</span>
-                    </label>
-                </div> */}
             </div>
             <div className='regis-btb'>
-                <button type='button' onClick={()=>{
-                    console.log(name);
-                    console.log(email);
-                    console.log(password);
-                    console.log(picture);
-                    console.log(course);
-                }}>Register</button>
+                <button type='button' onClick={registerHandler}>Register</button>
             </div>
         </form>
   </div>;
