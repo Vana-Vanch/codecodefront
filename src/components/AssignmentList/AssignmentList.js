@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './../AssignmentList/style.css';
 import Announcement from '../Announcement/Announcement';
+import { UserContext } from '../../UserContext';
 const AssignmentList = () => {
+   const msg = useContext(UserContext);
   return <>
   <section className='container'>
         <div className='assignment-container'>
-            
+        
             <div className='assignment'>
             {/* <h3>Assignment</h3> */}
                 <div className='box'>
