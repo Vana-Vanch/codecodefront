@@ -1,9 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 import './../AssignmentList/style.css';
 import Announcement from '../Announcement/Announcement';
 import { UserContext } from '../../UserContext';
+import {useNavigate} from "react-router-dom";
+
+
 const AssignmentList = () => {
-   const msg = useContext(UserContext);
+   let navigate = useNavigate();
+   const {user,setUser} = useContext(UserContext);
+
+   useEffect(()=>{
+      if(checkUser()){
+        console.log('authenticated');
+      }else{
+        navigate('/about')
+      }
+    })
+  
+    const checkUser = () =>{
+      if(user){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
   return <>
   <section className='container'>
         <div className='assignment-container'>

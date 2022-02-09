@@ -1,0 +1,45 @@
+.guest-container{
+    background: linear-gradient(135deg, #0088a9, #24252A);
+    height: 100vh;
+}
+.inner-box{
+    
+    max-width: 90%;
+    margin: auto;
+    padding: 30px 30px;
+
+}
+
+.inner-box p{
+    /* color: white; */
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.more-info{
+  
+    max-width: 90%;
+    margin: auto;
+    padding: 30px 30px;
+}
+
+.more-info h3{
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.image-con{
+    
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+/* .about-img-con{
+    height: 100px;
+    width: 200px;
+} */
+.objective-con{
+
+    width: 50%;
+    font-size: 25px;
+}

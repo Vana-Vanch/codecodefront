@@ -6,7 +6,7 @@ const Navbar = () => {
   const {user} = useContext(UserContext);
   return <header>
   <div className="logo">
-      <h3>Hming ala neilo</h3>
+      <h3>CodeAssignment</h3>
     </div>
   <nav className="nav-bar">
     
