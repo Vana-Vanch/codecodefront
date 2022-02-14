@@ -21,8 +21,9 @@ import 'brace/theme/cobalt';
 
 const MainAssignment = () => {
     const [code,setCode] = useState('');
-    const [lang,setLang] = useState('c_cpp');
+    const [lang,setLang] = useState('python');
     const [theme,setTheme] = useState('cobalt');
+    const [curlang,setCurlang] = useState('python');
 
     const getCode = () => {
         console.log(code);
@@ -51,14 +52,25 @@ const MainAssignment = () => {
     <div className='options-container'>
         Language
         <select name="dropdawn" id="dropdawn" onChange={(e)=>{
+          
           const selectedLang = e.target.value;
-          setLang(selectedLang);
+          if(selectedLang === 'c' || selectedLang === 'cpp'){
+            if(selectedLang ==='c'){
+              setCurlang('c');
+            }else if(selectedLang === 'cpp'){
+              setCurlang('cpp');
+            }
+            setLang('c_cpp');
+          }else{
+            setLang(selectedLang);
+            setCurlang(selectedLang)
+          }
         }}>
-          <option value="c_cpp">C</option>
-          <option value="c_cpp">C++</option>
-          <option value="java">Java</option>
-          <option value="php">PHP</option>
-          <option value="python">Python</option>
+            <option value="python">Python</option>
+            <option value="c">C</option>
+            <option value="cpp">C++</option>
+            <option value="javascript">Javascript</option>
+            <option value="php">PHP</option>
         </select>
         Themes
         <select name="themes" id="themes" onChange={(e)=>{
