@@ -1,21 +1,44 @@
-import React, { useContext,useEffect } from 'react';
+import React, { useContext,useEffect,useState } from 'react';
 import './../AssignmentList/style.css';
 import Announcement from '../Announcement/Announcement';
 import { UserContext } from '../../UserContext';
 import {useNavigate} from "react-router-dom";
+import axios from 'axios';
+import Assignment from './Assignment';
+
+axios.defaults.baseURL = 'http://localhost:8000/';
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 
 const AssignmentList = () => {
+   const [tasks,setTask] = useState([]);
    let navigate = useNavigate();
    const {user,setUser} = useContext(UserContext);
 
    useEffect(()=>{
       if(checkUser()){
         console.log('authenticated');
+        fetchAssignment();
       }else{
         navigate('/about')
       }
-    })
+    },[])
+
+    const fetchAssignment = () => {
+      axios.get('/sanctum/csrf-cookie').then(response => {
+         axios.get('api/assignmentlist').then(res => {
+            console.log(res.data.assignments);
+            setTask(res.data.assignments)
+            // setTask([...tasks,res.data]);
+            console.log("Task");
+            console.log(tasks);
+            console.log(typeof(tasks));
+         })
+      })
+    }
   
     const checkUser = () =>{
       if(user){
@@ -25,105 +48,21 @@ const AssignmentList = () => {
       }
     }
 
-  return <>
-  <section className='container'>
+  return  <section className='container'>
         <div className='assignment-container'>
         
             <div className='assignment'>
-            {/* <h3>Assignment</h3> */}
-                <div className='box'>
-                
-               <a href="#"> <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-            </p>
-                <p>Date: 20.22.22</p>
-                </a> </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-                </p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
-                <div className='box'>
-                <a href="#">
-                <h4>Title</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore et tempore esse omnis alias nisi, est deleniti laborum, dignissimos officia dolores ipsum inventore nemo maiores neque non at recusandae ea?
-             .</p>
-                <p>Date: 20.22.22</p></a>
-                </div>
+              {tasks.map(item => {
+                return <Assignment item={item} key={item.id} />
+              })}
             </div>
-           
         </div>
-        <div>
+       <div className='announcement-con'>
                 <Announcement />
-            </div>
+          </div>
  
-  </section>;
-</>
+ </section>;
+
 };
 
 export default AssignmentList;

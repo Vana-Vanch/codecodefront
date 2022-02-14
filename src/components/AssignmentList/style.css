@@ -7,14 +7,17 @@
     /* border-radius: 1.2rem; */
     background:#24252A;
     height: 80vh;
-    display: flex;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    column-gap: 5px;
+    
 
 }
 .assignment-container{
     /* background:#16ac2f; */
     color: blanchedalmond;
-    max-width: 70%;
-    flex-grow: 3;
+    /* max-width: 90%; */
+   
     overflow: hidden;
     overflow-y: scroll;
     /* border-radius: 1.2rem; */
@@ -36,24 +39,38 @@
     margin-top: 10px;
     padding: 20px 20px 30px;
     box-shadow: 0 5px 5px;
+    
+    
 }
-.assignment .box ::before{
+/* .assignment .box ::before{
     content: '';
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
-    /* background: #24252A;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.5s; */
-}
 
-.box:hover{
-    padding: 10px 40px;
-}
+} */
+
+
 
 
 .assignment p{
     font-size: small;
+}
+.announcement-con{
+
+    padding: 15px;
+
+}
+.assignment-btn{
+    background: green;
+    padding: 8px 15px;
+    border-radius: 10%;
+    border-color: black;
+    cursor: pointer;
+    
+}
+.btn-continer{
+    background: black;
+    padding-top: 10px;
 }

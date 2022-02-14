@@ -53,7 +53,7 @@ function App() {
          <Route path="/login" element={<Login />}/>
          <Route path="/logout" element={<Logout />}/>
          <Route path="/about" element={<Guest />} />
-  
+          <Route path="mainassignment/:id" element={<MainAssignment />} /> 
        </Routes>
       
     </Router>

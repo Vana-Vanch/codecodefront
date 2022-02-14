@@ -1,13 +1,14 @@
 .announcement-container{
     
    
-    padding: 12px 25px;
-    padding-left: 60px;
+    /* padding: 12px 25px; */
+    /* padding-left: 60px; */
     
     color: cornsilk;
     flex-grow: 0;   
     height: 70vh;
     margin-top: 21px;
+  
 }
 h3{
     text-align: center;

@@ -1,8 +1,50 @@
-import React from 'react';
+import React,{useContext, useEffect} from 'react';
 import '.././Guest/style.css';
 import theimage from '.././Guest/about.jpg';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { UserContext } from '../../UserContext';
+import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+
 const Guest = () => {
+  let navigate = useNavigate();
+  const {user,setUser} = useContext(UserContext);
+  const getUser = () => {
+    axios.get('/sanctum/csrf-cookie').then(response => {
+      axios.get('api/user').then(res => {
+        console.log(res.data);
+        const username = JSON.stringify(res.data.user.name);
+        setUser(username);
+      })
+    })
+  }
+
+  useEffect(()=>{
+    getUser();
+    if(checkUser()){
+      navigate('/')
+     
+    }else{
+      console.log('un-authenticated');
+    }
+  },[])
+
+
+  const checkUser = () =>{
+    if(user){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+
   return <div className='guest-container'>
       <div className='inner-box'>
      <p> Education through online mode has become a big deal these days, as technology advances every day, the need for a good education platform is required day by day. E-learning coding project is a school/college/institute coding assignment system that includes some of the most popular programming languages. This project aims to improve the experience of online  education.</p>
