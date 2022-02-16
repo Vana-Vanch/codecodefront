@@ -28,19 +28,48 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const MainAssignment = () => {
     let {id} = useParams();
-    console.log(id);
-    const [code,setCode] = useState('');
+   
+    const [code,setCode] = useState(''); 
     const [lang,setLang] = useState('python');
     const [theme,setTheme] = useState('cobalt');
     const [curlang,setCurlang] = useState('python');
 
     //Assignment useState
-
+    const [haveSubmitted,setHaveSubmitted] = useState(false);
     const [title,setTitle] = useState('');
     const [exin,setExin] = useState('');
     const [exout,setExout] = useState('');
     const [createdAt,setCreatedAt] = useState('');
     const [body,setBody] = useState('');
+
+    //Existing Assignments
+
+
+
+
+    const checkSubmit = () => {
+      axios.get('/sanctum/csrf-cookie').then(response => {
+        axios.get('/api/checksubmit/'+id).then(res =>{
+          if(res.data.message === 'null'){
+            setHaveSubmitted(false);
+          }else{
+            // setHaveSubmitted(true);
+            // console.log(res.data.current[0].id);
+            console.log(res.data.code.length);
+            let len = res.data.code.length;
+            // document.getElementById('subout').value = res.data.code;
+            // setCode(document.getElementById('subout').value);     
+            for(let i = 0;i< len;i++){
+              document.getElementById('secretagent').value += res.data.code[i];
+              document.getElementById('secretagent').value += '\n';
+            }
+            setCode(document.getElementById('secretagent').value);
+
+          }
+        })
+      })
+    }
+
 
     const getCode = () => {
       console.log(curlang);
@@ -61,6 +90,7 @@ const MainAssignment = () => {
       })
        
     }
+    
 
     const submitCode = () => {
       console.log(code);
@@ -96,6 +126,7 @@ const MainAssignment = () => {
         })
     }
     useEffect(()=>{
+      checkSubmit();
       getAssignment();
     },[])
 
@@ -177,6 +208,7 @@ const MainAssignment = () => {
                 />
   </div>;
  
+ 
   <div className='sub-container'>
   <button className='prac-run' onClick={getCode}>Run</button>
   <button className='ass-submit' type='button' onClick={submitCode}>Submit</button>
@@ -185,7 +217,8 @@ const MainAssignment = () => {
       </div>
       <div className="outputcon">
           <h3>Output</h3>
-          <textarea name="" id="subout" cols="30" rows="45" readOnly></textarea>
+          <textarea name="" id="subout" cols="30" rows="45" readOnly ></textarea>
+          <textarea name="" id="secretagent" cols="1" rows="1" hidden></textarea>
       </div>
   </div>;
   </section> 
