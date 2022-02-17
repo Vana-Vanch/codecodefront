@@ -43,7 +43,7 @@ const Login = () => {
     <section className='regis-body'>
   <div className='registration-container'>
         <div className="registration-title">
-            Login {user} aa
+            Login
         </div>
         <form action="#">
             <div className="user-details">

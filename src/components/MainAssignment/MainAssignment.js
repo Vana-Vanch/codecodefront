@@ -36,7 +36,7 @@ const MainAssignment = () => {
 
     //Assignment useState
     const [haveSubmitted,setHaveSubmitted] = useState(false);
-    const [title,setTitle] = useState('');
+    const [asstitle,setTitle] = useState('');
     const [exin,setExin] = useState('');
     const [exout,setExout] = useState('');
     const [createdAt,setCreatedAt] = useState('');
@@ -76,6 +76,7 @@ const MainAssignment = () => {
    
       const codes = code;
       const language = curlang;
+      const title = asstitle;
       const bodies = {
         codes,
         language
@@ -133,7 +134,7 @@ const MainAssignment = () => {
   return    <section className='assbody'>
   <div className='mainass-container'>
       <div className="ques">
-          <h3>{title}</h3>
+          <h3>{asstitle}</h3>
           <div className='prop-con'>
           <div className="question">
               <p>

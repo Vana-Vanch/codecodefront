@@ -21,7 +21,7 @@ const Logout = () => {
                 console.log(res.data.message);
                 if(res.data.message === 'success'){
                     setUser(null);
-                    navigate("/");
+                    navigate("/login");
                 }
             })
         })

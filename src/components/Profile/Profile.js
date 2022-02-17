@@ -2,7 +2,7 @@ import React,{useContext,useEffect, useState} from 'react';
 import './../Profile/style.css';
 import axios from 'axios';
 import noimage from './../Profile/noimage.jpg';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 
 
@@ -18,6 +18,7 @@ const Profile = () => {
     const [theEmail,setTheEmail] = useState('');
     const [theRollno,setTheRollno] = useState('');
     const [propic,setPropic] = useState(false);
+    const [assignments,setAssignments] = useState([]);
     const [url,setUrl] = useState('');
     const newName = user.slice(1,user.length-1);
     
@@ -64,11 +65,14 @@ const Profile = () => {
           axios.get('sanctum/csrf-cookie').then(response => {
               axios.get('api/myassignments').then(res => {
                   console.log(res.data);
+                  setAssignments(res.data);
+                  
               })
           })
       }
     
     
+  
 
   return (
   <section className='zeBody'>
@@ -102,22 +106,22 @@ const Profile = () => {
                    <table className='content-table'>
                        <thead>
                        <tr>
-                           <th>S.no</th>
+                          
                            <th>Title</th>
                            <th>Date</th>
                        </tr>
                        </thead>
                        <tbody>
-                           <tr>
-                               <td>1</td>
-                               <td>Program to add two numbers</td>
-                               <td>01.02.2022</td>
+                           
+                             {assignments.map(item=>{
+                               return <tr key={item.id}>
+                               <Link to={`/mainassignment/${item.assignments_id}`}><td>{item.title}</td></Link>
+                               
+                               <td>{item.created_at}</td>
+                             
                            </tr>
-                           <tr>
-                               <td>2</td>
-                               <td>Program to add two numbers</td>
-                               <td>01.02.2022</td>
-                           </tr>
+                             })}
+              
                        </tbody>
                    </table>
                 </div>
