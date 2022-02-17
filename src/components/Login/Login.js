@@ -17,7 +17,7 @@ const Login = () => {
     const [umail,setmail] = useState('');
     const [upassword,setPassword] = useState('');
     const {user,setUser} = useContext(UserContext);
-    console.log('user =>'. user);
+    console.log('user =>'+user);
     const sendLoginReq = () =>{
         const email = umail;
         const password = upassword;

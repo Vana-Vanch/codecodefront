@@ -1,9 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext,useState } from 'react';
 import './../Navbar/navbar.css';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
+import axios from 'axios';
+
+
+
+axios.defaults.baseURL = 'http://localhost:8000/';
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 const Navbar = () => {
+
   const {user} = useContext(UserContext);
+
+   
+      
+   
+ 
+  
+  
   return <header>
   <div className="logo">
       <h3>CodeAssignment</h3>
@@ -21,7 +38,7 @@ const Navbar = () => {
     </li>
 
      <li>
-     <Link to="/profile">Profile</Link>
+     <Link to={`/profile/${user}`}>Profile</Link>
      </li>
  <li>
  <Link to="/logout">Log out</Link>

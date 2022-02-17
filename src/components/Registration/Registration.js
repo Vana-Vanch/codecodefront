@@ -18,7 +18,7 @@ const Registration = () => {
     const [upassword,setPassword] = useState('');
     const [upasswordConfirmation, setPasswordConfirmation] = useState('');
     const [ucourse,setCourse] = useState('BCA');
-    // const [ppic,setPicture] = useState('');
+    const [ppic,setPicture] = useState(null );
     const registerHandler = () =>{
 
         const name = uname;
@@ -26,15 +26,19 @@ const Registration = () => {
         const rollno = urollno;
         const password =upassword;
         const password_confirmation = upasswordConfirmation;
-        const udatas = {
-            name,
-            email,
-            rollno,
-            password,
-            password_confirmation
-        };
+
+        let fd = new FormData();
+        fd.append("name", name);
+        fd.append("email", email);
+        fd.append("rollno", rollno);
+        fd.append("password", password);
+        fd.append("password_confirmation", password_confirmation);
+        fd.append("ppic", ppic);
+
+
+
         axios.get('/sanctum/csrf-cookie').then(response=>{
-            axios.post('/api/register',udatas ).then(res=>{
+            axios.post('/api/register',fd ).then(res=>{
                 console.log(res.data.message);
                 if(res.data.message === 'success'){
                     navigate("/login");
@@ -42,6 +46,7 @@ const Registration = () => {
             })
         })
 }
+
     return <>
     <section className='regis-body'>
   <div className='registration-container'>
@@ -112,6 +117,20 @@ const Registration = () => {
                 </div>
               
             </div>
+            <div className="upload-box">
+                    <span className="details">
+                        Upload Profile Pictures
+                    </span>
+                    <input type="file" 
+
+                    onChange={e => {
+
+                      console.log(e.target.files[0]);
+                      setPicture(e.target.files[0]);
+                      
+                    }}
+                    />
+                </div>
             <div className="course-detail">
                 <input type="radio"
                 value={ucourse}

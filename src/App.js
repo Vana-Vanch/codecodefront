@@ -48,7 +48,7 @@ function App() {
        
          <Route path="/" element={<AssignmentList />} />
          <Route path="/practice" element={<Practice />} />
-         <Route path="/profile" element={<Profile />}/>
+         <Route path="/profile/:username" element={<Profile />}/>
          <Route path="/register" element={<Registration />} />
          <Route path="/login" element={<Login />}/>
          <Route path="/logout" element={<Logout />}/>

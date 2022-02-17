@@ -64,7 +64,7 @@ const MainAssignment = () => {
               document.getElementById('secretagent').value += '\n';
             }
             setCode(document.getElementById('secretagent').value);
-
+            setHaveSubmitted(true);
           }
         })
       })
@@ -211,7 +211,12 @@ const MainAssignment = () => {
  
   <div className='sub-container'>
   <button className='prac-run' onClick={getCode}>Run</button>
+  {haveSubmitted ?
+      <button className='ass-submit' type='button' disabled>Submitted</button>
+  : 
   <button className='ass-submit' type='button' onClick={submitCode}>Submit</button>
+}
+ 
   </div>
                     
       </div>
