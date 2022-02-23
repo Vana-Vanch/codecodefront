@@ -23,7 +23,7 @@ const AssignmentList = () => {
         console.log('authenticated');
         fetchAssignment();
       }else{
-        navigate('/about')
+        navigate('/welcome')
       }
     },[])
 

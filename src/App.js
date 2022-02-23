@@ -13,7 +13,7 @@ import Login from './components/Login/Login';
 import MainAssignment from './components/MainAssignment/MainAssignment';
 import Logout from './components/Logout/Logout';
 import Guest from './components/Guest/Guest';
-
+import Welcome from './components/Welcome/Welcome';
 
 
 import { UserContext } from './UserContext';
@@ -22,6 +22,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useContext, useMemo, useState, useEffect } from 'react';
 
 import axios from 'axios';
+
 axios.defaults.baseURL = 'http://localhost:8000/';
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Accept'] = 'application/json';
@@ -54,6 +55,7 @@ function App() {
          <Route path="/logout" element={<Logout />}/>
          <Route path="/about" element={<Guest />} />
           <Route path="mainassignment/:id" element={<MainAssignment />} /> 
+          <Route path="/welcome" element={<Welcome/>} />
        </Routes>
       
     </Router>

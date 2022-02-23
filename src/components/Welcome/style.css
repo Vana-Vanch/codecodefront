@@ -1,0 +1,53 @@
+.welcome-back{
+   
+
+    background-image:url('./back.jpg');
+    background-size:cover;
+    background-position:center;
+    height:100vh;
+    display: flex;
+    
+
+
+}
+
+.the-box{
+
+    width:40%;
+    height: 50px;
+    padding: 30px;
+}
+.the-box p{
+    color: white;
+    word-spacing: 3px;
+    line-height: 1.6;
+
+}
+.the-box h1{
+    padding: 30px;
+    color: #fff;
+}
+.box-btn{
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #1edb0d;
+    cursor: pointer;
+}
+
+.box-btn:hover{
+   background: #50e643; 
+}
+.box-lokin{
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #0ee3d5;
+    cursor: pointer;
+}
+
+.box-lokin:hover{
+   background: #54b8b1; 
+}
