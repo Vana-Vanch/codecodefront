@@ -1,0 +1,36 @@
+.create-container{
+
+    width: 100%;
+    padding: 20px;
+}
+.the-assignment{
+    display: flex;
+    height: 600px;
+    justify-content: center;
+
+    padding: 10px;
+
+
+}
+.create-container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+.input-boxes{
+    margin-bottom: 15px;
+     width: calc(100% /2 - 20px);
+     
+ }
+.input-boxes input{
+    height: 45px;
+    width: 600px;
+    outline: none;
+    border-radius: 10px;
+    border: 3px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+}

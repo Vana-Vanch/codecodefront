@@ -1,7 +1,7 @@
 import React, { useContext,useState } from 'react';
 import './../Navbar/navbar.css';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../UserContext';
+import { UserContext,AdminContext } from '../../UserContext';
 import axios from 'axios';
 
 
@@ -14,7 +14,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 const Navbar = () => {
 
   const {user} = useContext(UserContext);
-
+  const {admin} = useContext(AdminContext);
    
       
    
@@ -55,6 +55,16 @@ const Navbar = () => {
          </li>  
          </>
    }
+    {admin ? 
+    <>
+      <li>
+        <Link to="/dashboard">Dashboard</Link>
+      </li>
+    </>
+      :
+      console.log('Not Admin')
+      
+    }
   <li>
       <Link to="/practice">Practice</Link>
       </li>

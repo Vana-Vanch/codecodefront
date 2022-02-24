@@ -3,7 +3,7 @@ import axios from 'axios';
 import './../Login/style.css';
 import {useNavigate} from "react-router-dom";
 
-import { UserContext } from '../../UserContext';
+import { UserContext,AdminContext } from '../../UserContext';
 
 
 axios.defaults.withCredentials = true;
@@ -17,6 +17,7 @@ const Login = () => {
     const [umail,setmail] = useState('');
     const [upassword,setPassword] = useState('');
     const {user,setUser} = useContext(UserContext);
+    const {admin,setAdmin} = useContext(AdminContext);
     console.log('user =>'+user);
     const sendLoginReq = () =>{
         const email = umail;
@@ -31,6 +32,9 @@ const Login = () => {
                 if(res.data.message === 'success'){
                     console.log(res.data.user.name);
                     const username = JSON.stringify(res.data.user.name);
+                    if(res.data.user.isAdmin == '1'){
+                        setAdmin(true);
+                    }
                     setUser(username);
                     
                     navigate('/');

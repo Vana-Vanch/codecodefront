@@ -1,0 +1,11 @@
+.create-assignment{
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #4d4f4d;
+    cursor: pointer;
+}
+.create-assignment:hover{
+    background : #24253C;
+}

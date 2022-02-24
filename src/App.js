@@ -14,9 +14,14 @@ import MainAssignment from './components/MainAssignment/MainAssignment';
 import Logout from './components/Logout/Logout';
 import Guest from './components/Guest/Guest';
 import Welcome from './components/Welcome/Welcome';
+import Admin from './components/Admin/Admin';
+import AdminAssignment from './components/AdminAssignment/AdminAssignment';
+import AdminAnnounce from './components/AdminAnnounce/AdminAnnounce';
+import UserList from './components/UserList/UserList';
+import Submissions from './components/Submissions/Submissions';
+import CreateAssignment from './components/CreateAssignment/CreateAssignment';
 
-
-import { UserContext } from './UserContext';
+import { UserContext,AdminContext } from './UserContext';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useContext, useMemo, useState, useEffect } from 'react';
@@ -31,6 +36,13 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 function App() {
 
   const [user,setUser] = useState('');
+  const [admin,setAdmin] = useState(false);
+
+  const adminProvider = {
+    admin,
+    setAdmin
+  }
+
   const providerValue ={
     user,
     setUser
@@ -40,25 +52,34 @@ function App() {
   
   return ( 
     <UserContext.Provider value={providerValue} >
-       
+       <AdminContext.Provider value={adminProvider} >
       <Router>
        
        <Navbar />
        
        <Routes>
        
-         <Route path="/" element={<AssignmentList />} />
-         <Route path="/practice" element={<Practice />} />
-         <Route path="/profile/:username" element={<Profile />}/>
-         <Route path="/register" element={<Registration />} />
-         <Route path="/login" element={<Login />}/>
-         <Route path="/logout" element={<Logout />}/>
-         <Route path="/about" element={<Guest />} />
-          <Route path="mainassignment/:id" element={<MainAssignment />} /> 
-          <Route path="/welcome" element={<Welcome/>} />
+        <Route path="/" element={<AssignmentList />} />
+        <Route path="/practice" element={<Practice />} />
+        <Route path="/profile/:username" element={<Profile />}/>
+        <Route path="/register" element={<Registration />} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="/logout" element={<Logout />}/>
+        <Route path="/about" element={<Guest />} />
+        <Route path="mainassignment/:id" element={<MainAssignment />} /> 
+        <Route path="/welcome" element={<Welcome/>} />
+        <Route path="/dashboard" element={<Admin/>}>
+          <Route path="userlist" element={<UserList />} />
+          <Route path="assignmen" element={<AdminAssignment />} />
+          <Route path="createassignment" element={<CreateAssignment />} />
+  
+          <Route path="submission" element={<Submissions />} />
+          <Route path="announcement" element={<AdminAnnounce />} />
+        </Route>
        </Routes>
       
     </Router>
+      </AdminContext.Provider>
     </UserContext.Provider>
   );
 }

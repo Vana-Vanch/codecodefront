@@ -1,7 +1,7 @@
 import React,{useContext, useEffect} from 'react'
 import axios from 'axios';
 import '../Welcome/style.css';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 
 import { UserContext } from '../../UserContext';
 
@@ -49,10 +49,10 @@ const Welcome = () => {
         <div className='the-box'>
             <h1>Welcome To CodingAssignment</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit, ipsam, dolores, harum cupiditate quae eius porro commodi quos nobis ad libero dignissimos voluptatum omnis molestias corrupti perspiciatis. Placeat, laboriosam deserunt?</p>
-            <button className='box-btn'>Register</button>
-            <button className='box-lokin'>Login</button>
+            <button className='box-btn'><Link to="/register">Register</Link></button>
+            <button className='box-lokin'><Link to="/login">Login</Link></button>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam autem nobis suscipit quaerat quasi, minima repellat exercitationem vel eius corporis, hic libero nulla maxime illo odio at culpa blanditiis doloribus!</p>
-            <button className='box-btn'>EdiThor</button>
+            <button className='box-btn'><Link to="/practice">EdiThor</Link></button>
         </div>
     </section>
   )
