@@ -1,0 +1,19 @@
+.create-container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    height: 200px;
+
+}
+.submit-con{
+    padding: 20px 30px;
+    
+}
+.submit-con button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #00cc52;
+    cursor: pointer;
+}

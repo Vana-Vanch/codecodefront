@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../UserContext';
+import { AdminContext, UserContext } from '../../UserContext';
 import '.././Logout/index.css';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
@@ -15,12 +15,14 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 const Logout = () => {
     let navigate = useNavigate();
     const {user,setUser} = useContext(UserContext);
+    const {admin,setAdmin} = useContext(AdminContext)
     const sendLogoutReq = () =>{
         axios.get('/sanctum/csrf-cookie').then(response=>{
             axios.post('/api/logout' ).then(res=>{
                 console.log(res.data.message);
                 if(res.data.message === 'success'){
                     setUser(null);
+                    setAdmin(false);
                     navigate("/login");
                 }
             })

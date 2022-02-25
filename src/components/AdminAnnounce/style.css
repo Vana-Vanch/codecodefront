@@ -1,0 +1,21 @@
+.anounce{
+
+    padding: 30px 10px;
+}
+.anounce button{
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background: #cc0000;
+    cursor: pointer;
+}
+.anounce-create{
+    padding: 10px 10px;
+}
+.anounce-create button{
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background: #09eb5c;
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext,useState,useEffect } from 'react';
 import './../Navbar/navbar.css';
 import { Link } from 'react-router-dom';
 import { UserContext,AdminContext } from '../../UserContext';
@@ -13,9 +13,43 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const Navbar = () => {
 
-  const {user} = useContext(UserContext);
-  const {admin} = useContext(AdminContext);
+  const {user,setUser} = useContext(UserContext);
+  const {admin,setAdmin} = useContext(AdminContext);
    
+  const getUser = () => {
+    axios.get('/sanctum/csrf-cookie').then(response => {
+      axios.get('api/user').then(res => {
+        console.log(res.data.status);
+        const username = res.data.user.name;
+        console.log(username);
+        
+        setUser(username);
+        if(res.data.user.isAdmin === 1){
+          console.log('Admin is ture');
+          setAdmin(true);
+        }
+      })
+    })
+  }
+
+  useEffect(()=>{
+    getUser();
+    if(checkUser()){
+      console.log('Bello');
+     
+    }else{
+      console.log('un-authenticated');
+    }
+  },[])
+
+
+  const checkUser = () =>{
+    if(user){
+      return true;
+    }else{
+      return false;
+    }
+  }
       
    
  

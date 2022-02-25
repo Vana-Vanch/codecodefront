@@ -20,6 +20,10 @@ import AdminAnnounce from './components/AdminAnnounce/AdminAnnounce';
 import UserList from './components/UserList/UserList';
 import Submissions from './components/Submissions/Submissions';
 import CreateAssignment from './components/CreateAssignment/CreateAssignment';
+import Check from './components/Check/Check';
+import SubmitList from './components/SubmitList/SubmitList';
+import AnnounceCreate from './components/AnnounceCreate/AnnounceCreate';
+
 
 import { UserContext,AdminContext } from './UserContext';
 
@@ -27,6 +31,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useContext, useMemo, useState, useEffect } from 'react';
 
 import axios from 'axios';
+
 
 axios.defaults.baseURL = 'http://localhost:8000/';
 axios.defaults.withCredentials = true;
@@ -72,9 +77,11 @@ function App() {
           <Route path="userlist" element={<UserList />} />
           <Route path="assignmen" element={<AdminAssignment />} />
           <Route path="createassignment" element={<CreateAssignment />} />
-  
           <Route path="submission" element={<Submissions />} />
+          <Route path="submitlist/:id" element={<SubmitList />} />
+          <Route path="check/:id" element={<Check />} />
           <Route path="announcement" element={<AdminAnnounce />} />
+          <Route path="createannouncement" element={<AnnounceCreate />} />
         </Route>
        </Routes>
       
