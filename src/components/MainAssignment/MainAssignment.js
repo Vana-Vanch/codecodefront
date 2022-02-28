@@ -73,13 +73,14 @@ const MainAssignment = () => {
 
     const getCode = () => {
       console.log(curlang);
-   
+      const theTitle = asstitle;
       const codes = code;
       const language = curlang;
       const title = asstitle;
       const bodies = {
         codes,
-        language
+        language,
+        theTitle
       };
       axios.get('/sanctum/csrf-cookie').then(response => {
         axios.post('/api/practice', bodies).then(res=>{

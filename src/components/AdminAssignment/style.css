@@ -9,3 +9,6 @@
 .create-assignment:hover{
     background : #24253C;
 }
+.user-table .user-tab-body a{
+    color: black;
+}

@@ -1,6 +1,35 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
+import axios from 'axios';
 import "../UserList/style.css";
+
+
+
+
+
+axios.defaults.baseURL = 'http://localhost:8000/';
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+
 const UserList = () => {
+  const [theUsers,setTheUsers] = useState([]);
+  const [theRole,setTheRole] = useState('');
+
+useEffect(()=> {
+  getAllUsers();
+},[])
+console.log(theUsers);
+
+  const getAllUsers = () => {
+    axios.get('sanctum/csrf-cookie').then(response => {
+      axios.get('/api/allusers').then(res => {
+        console.log(res.data);
+        setTheUsers(res.data.users);
+      })
+    })
+  }
+
   return (
     <>
     <div className='theHead'>List of Users</div>
@@ -21,13 +50,23 @@ const UserList = () => {
 
           </thead>
           <tbody>
-            <tr>
-              <td>Vana</td>
-              <td>1234</td>
+            {theUsers.map(item => {
+              // if(item.isAdmin === 1){
+              //  setTheRole('Admin')
+              // }else{
+              //   setTheRole('User')
+              // }
+              return <>
+            <tr >
+              <td key={item.id}>{item.name}</td>
+              <td>{item.rollno}</td>
               <td>MCA</td>
-              <td>vana@vana.com</td>
-              <td>Admin</td>
+              <td>{item.email}</td>
+            
+              <td>ppop</td>
             </tr>
+              </>
+            })}
           </tbody>
         </table>
       </div>
