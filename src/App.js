@@ -79,7 +79,8 @@ function App() {
           <Route path="createassignment" element={<CreateAssignment />} />
           <Route path="submission" element={<Submissions />} />
           <Route path="submitlist/:id" element={<SubmitList />} />
-          <Route path="check/:id" element={<Check />} />
+          <Route path="check/:username/:id" element={<Check />} />
+        
           <Route path="announcement" element={<AdminAnnounce />} />
           <Route path="createannouncement" element={<AnnounceCreate />} />
         </Route>

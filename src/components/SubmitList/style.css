@@ -3,3 +3,6 @@
     max-width: 900px;
     margin: auto;
 }
+.submission-table .subtable a{
+    color: black;
+}

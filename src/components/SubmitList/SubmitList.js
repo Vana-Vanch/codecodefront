@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import "../SubmitList/style.css";
 import axios from 'axios';
 
@@ -12,6 +12,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 const SubmitList = () => {
   let {id} = useParams();
   const [list,setList] = useState([]);
+  const [userList,setUserList] = useState([]);
   const [title,setTitle] = useState('');
   const [body,setBody] = useState('');
 
@@ -22,11 +23,10 @@ const SubmitList = () => {
         setList(res.data.list);
         setTitle(res.data.main.title);
         setBody(res.data.main.description)
+        setUserList(res.data.list);
       })
     })
   }
-
-
   useEffect(() => {
     createReq();
   }, [])
@@ -44,25 +44,34 @@ const SubmitList = () => {
         <tr>
           <td>Name</td>
           <td>Rollno</td>
-        
-
         </tr>
-        
-
       </thead>
-      <tbody>
-        <tr>
-          <td>Vana</td>
-          <td>1234</td>
+      <tbody className='subtable'>
+          {
+            userList.map(item => {
+              return  <tr key={item.id}>
+             <td><Link to={`/dashboard/check/${item.uname}/${id}`}>{item.uname}</Link></td>
+             <td>asd</td>
+           </tr>
+               })
+             }
+         </tbody>
+       </table>
+     </div>
+     </>
+     )
+   }
+   
+   export default SubmitList
+        
+
+        
+
+       
+
       
-        </tr>
-      </tbody>
-    </table>
+
+
+ 
 
    
-  </div>
-  </>
-  )
-}
-
-export default SubmitList
