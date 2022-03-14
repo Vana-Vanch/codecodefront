@@ -37,6 +37,8 @@ const Check = () => {
   const [lang,setLang] = useState('python');
   const [theme,setTheme] = useState('cobalt')
   const [curlang,setCurlang] = useState('python')
+  const [review,setReview] = useState(0);
+  const [rated,setRated] = useState(false);
   
   const getStuCode = () => {
     const stuName = username;
@@ -46,13 +48,76 @@ const Check = () => {
     axios.get('sanctum/csrf-cookie').then(response => {
       axios.post('api/studentcode/'+id, datas).then(res => {
         console.log(res.data);
+        let lenghtofCode = res.data.code.length;
+        for(let i = 0;i< lenghtofCode;i++){
+          document.getElementById('secret').value += res.data.code[i];
+          document.getElementById('secret').value += '\n';
+        }
+        setCode(document.getElementById('secret').value);
+      })
+    })
+  }
+
+  const makeReview = () => {
+    const stuName = username;
+    const ratings = review;
+    const datas = {
+      stuName,
+      ratings
+    }
+    axios.get('sanctum/csrf-cookie').then(response => {
+      axios.post('api/review/'+id,datas).then(res => {
+        console.log(res.data);
+      })
+    })
+  }
+
+  const checkSubmitted = () => {
+    const stuName = username;
+    const datas = {
+      stuName
+    }
+    axios.get('sanctum/csrf-cookie').then(response => {
+      axios.post('api/checkthis/'+id,datas).then(res => {
+        console.log(res.data);
+        if(res.data == 'True'){
+          setRated(true);
+        }else{
+          setRated(false);
+        }
       })
     })
   }
 
 
+  const checkCode = () => {
+    console.log(curlang);
+
+    const codes = code;
+    const language = curlang;
+    const bodies = {
+      codes,
+      language
+    };
+    axios.get('/sanctum/csrf-cookie').then(response => {
+      axios.post('/api/practice', bodies).then(res=>{
+     
+        const codeOutput = res.data[0];
+        console.log(codeOutput);
+        document.getElementById('outpt').value = codeOutput;
+      })
+    })
+
+
+}
+
+
+
+
+
   useEffect(()=>{
     getStuCode();
+    checkSubmitted();
   }, [])
 
 
@@ -126,6 +191,41 @@ const Check = () => {
                 />
   </div>
     </div>
+    <div className='editorsec2'>
+      <div>
+      <textarea name="" id="outpt" cols="40" rows="10" readOnly ></textarea>
+      <textarea name="" id="secret" cols="1" rows="1" hidden></textarea>
+      <div className='marksrev'>
+        <select name="marks" id="" onChange={(e) => {
+          const marks = e.target.value;
+          setReview(marks);
+          console.log(marks);
+        }}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+
+        </select>
+   
+        {rated ?
+      <button className='ass-submit' type='button' disabled>Submitted</button>
+  : 
+  <button className='ass-submit' type='button' onClick={makeReview}>Submit</button>
+}
+      </div>
+      </div>
+      <div className='run-container'>
+         <button className='ass-submit' onClick={checkCode}>Run</button>           
+      </div>
+    </div>
+
     </>
   )
 }

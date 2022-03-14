@@ -1,0 +1,15 @@
+.editorsec2{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.marksrev{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}
+
+.run-container{
+    padding-left: 10px;
+}
