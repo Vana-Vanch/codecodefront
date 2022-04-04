@@ -70,6 +70,7 @@ const Check = () => {
         console.log(res.data);
       })
     })
+    checkSubmitted();
   }
 
   const checkSubmitted = () => {
@@ -80,11 +81,12 @@ const Check = () => {
     axios.get('sanctum/csrf-cookie').then(response => {
       axios.post('api/checkthis/'+id,datas).then(res => {
         console.log(res.data);
-        if(res.data == 'True'){
+        if(res.data === 'True'){
           setRated(true);
         }else{
           setRated(false);
         }
+
       })
     })
   }

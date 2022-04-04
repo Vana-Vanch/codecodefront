@@ -71,6 +71,19 @@ const MainAssignment = () => {
     }
 
 
+    const justSubmitted = () => {
+      axios.get('/sanctum/csrf-cookie').then(response => {
+        axios.get('/api/checksubmit/'+id).then(res =>{
+          if(res.data.message === 'null'){
+            setHaveSubmitted(false);
+          }else{
+            setHaveSubmitted(true);
+          }
+        })
+      })
+    }
+
+
     const getCode = () => {
       console.log(curlang);
       const theTitle = asstitle;
@@ -104,11 +117,13 @@ const MainAssignment = () => {
         zecode,
         language
       }
-      axios.get('sanctum/csrf-cookie').then(response => {
+      axios.get('/sanctum/csrf-cookie').then(response => {
         axios.post('/api/submit/'+id, theDatas).then(res =>{
           console.log(res.data);
         })
       })
+      justSubmitted();
+   
 
     }
 
