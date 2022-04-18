@@ -20,8 +20,10 @@ const Profile = () => {
     const [propic,setPropic] = useState(false);
     const [assignments,setAssignments] = useState([]);
     const [url,setUrl] = useState('');
+    const [rate,setRate] = useState('');
     const newName = user.slice(1,user.length-1);
-    
+    let revDict = {};
+    let theAssignments = [];
     console.log(newName);
 
     const getUser = () => {
@@ -66,12 +68,31 @@ const Profile = () => {
               axios.get('api/myassignments').then(res => {
                   console.log(res.data);
                   setAssignments(res.data);
+                  console.log(res.data.length);
+                  for(let i = 0 ;i <= res.data.length;i++){
+                    console.log(res.data[i]);
+                    theAssignments.push(res.data[i].assignments_id)
+              
+                  }
                   
               })
           })
       }
-    
-    
+      
+
+    const getOne = (para) =>  {
+      axios.get('sanctum/csrf-cookie').then(response => {
+        axios.post('api/oneReview/'+para).then(res => {
+          console.log(res.data.message);
+          if(res.data.message ==='NULL'){
+            setRate('N/A')
+          }else{
+            setRate(JSON.stringify(res.data.message[0].ratings))
+          }
+        })
+      })
+    }
+  
   
 
   return (
@@ -108,16 +129,18 @@ const Profile = () => {
                        <tr>
                           
                            <th>Title</th>
-                           <th>Date</th>
+                           <th>Rating</th>
                        </tr>
                        </thead>
                        <tbody>
                            
                              {assignments.map(item=>{
+                         
+                            
                                return <tr key={item.id}>
                                <Link to={`/mainassignment/${item.assignments_id}`}><td>{item.title}</td></Link>
-                               
-                               <td>{item.created_at}</td>
+                              
+                               <td>{item.marks}</td>
                              
                            </tr>
                              })}

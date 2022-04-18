@@ -10,7 +10,7 @@ const Assignment = ({item}) => {
                 
               <Link to={`/mainassignment/${item.id}`}> <h4>{item.title}</h4></Link>
                 <p>{item.description}</p>
-                <p>{item.created_at}</p>
+                {/* <p>{item.created_at}</p> */}
            
                  </div>
                 

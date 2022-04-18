@@ -20,6 +20,7 @@ import 'brace/theme/solarized_dark';
 import 'brace/theme/solarized_light';
 import 'brace/theme/cobalt';
 import 'brace/theme/dracula';
+import 'brace/theme/ambiance';
 
 axios.defaults.baseURL = 'http://localhost:8000/';
 axios.defaults.withCredentials = true;
@@ -93,11 +94,12 @@ const Practice = () => {
             const selectedTheme = e.target.value;
             setTheme(selectedTheme);
           }}>
-            <option value="monokai">monokai</option>
-            <option value="sqlserver">sqlserver</option>
-            <option value="solarized_dark">solarized_dark</option>
-            <option value="cobalt">cobalt</option>
-            <option value="dracula">dracula</option>
+          <option value="cobalt">cobalt</option>
+          <option value="monokai">monokai</option>
+          <option value="sqlserver">sqlserver</option>
+          <option value="solarized_dark">solarized_dark</option>
+          <option value="ambiance">ambiance</option>
+          <option value="dracula">dracula</option>
           </select>
   
   

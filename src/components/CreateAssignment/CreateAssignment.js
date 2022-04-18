@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import "../CreateAssignment/style.css";
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+
 
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Accept'] = 'application/json';
@@ -9,6 +11,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
 const CreateAssignment = () => {
+  let navigate = useNavigate();
   const [title,setTitle] = useState('');
   const [body,setBody] = useState('');
   const [input,setInput] = useState('');
@@ -28,6 +31,7 @@ const CreateAssignment = () => {
     axios.get('/sanctum/csrf-cookie').then(response => {
       axios.post('/api/assignmentcreate',datas).then(res => {
         console.log(res.data);
+        navigate('/dashboard/assignmen');
       })
     })
 

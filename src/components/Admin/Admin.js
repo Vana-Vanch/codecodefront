@@ -13,9 +13,9 @@ const Admin = () => {
                 <li>
                 <Link to="assignmen">Assignments</Link>
                 </li>
-                <li>
+                {/* <li>
                 <Link to="submission">Submissions</Link>
-                </li>
+                </li> */}
                 <li>
                 <Link to="announcement">Announcements</Link>
                 </li>

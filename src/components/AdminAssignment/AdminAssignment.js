@@ -57,7 +57,7 @@ const AdminAssignment = () => {
               return <>
             <tr>
             <td> <Link to={`/dashboard/submitlist/${item.id}`}>{item.title}</Link> </td> 
-              <td>1234</td>
+              <td>{item.description}</td>
           
             </tr>
             </>
