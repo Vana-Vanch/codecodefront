@@ -29,7 +29,7 @@ const AssignmentList = () => {
 
     const fetchAssignment = () => {
       axios.get('/sanctum/csrf-cookie').then(response => {
-         axios.get('api/assignmentlist').then(res => {
+         axios.get('api/parassignment').then(res => {
             console.log(res.data.assignments);
             setTask(res.data.assignments)
             // setTask([...tasks,res.data]);

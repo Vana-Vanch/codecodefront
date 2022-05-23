@@ -43,7 +43,7 @@ console.log(theUsers);
               <td>Rollno</td>
               <td>Course</td>
               <td>Email</td>
-              <td>Role</td>
+        
 
             </tr>
             
@@ -60,10 +60,10 @@ console.log(theUsers);
             <tr >
               <td key={item.id}>{item.name}</td>
               <td>{item.rollno}</td>
-              <td>MCA</td>
+              <td>{item.course}</td>
               <td>{item.email}</td>
             
-              <td>ppop</td>
+       
             </tr>
               </>
             })}

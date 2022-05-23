@@ -26,6 +26,7 @@ const Registration = () => {
         const rollno = urollno;
         const password =upassword;
         const password_confirmation = upasswordConfirmation;
+        const course = ucourse;
 
         let fd = new FormData();
         fd.append("name", name);
@@ -34,6 +35,8 @@ const Registration = () => {
         fd.append("password", password);
         fd.append("password_confirmation", password_confirmation);
         fd.append("ppic", ppic);
+        fd.append("course", course);
+
 
 
 
@@ -145,6 +148,7 @@ const Registration = () => {
                 <span className="course-title">Course</span>
                 <select name="select" id="" className='selection' onChange={e => {
                     setCourse(e.target.value)
+                    console.log(ucourse);
                 }}>
                     <option value="BCA">BCA</option>
                     <option value="MCA">MCA</option>
