@@ -16,17 +16,19 @@ const CreateAssignment = () => {
   const [body,setBody] = useState('');
   const [input,setInput] = useState('');
   const [output,setOutput] = useState('');
-
+  const [course,setCourse] = useState('BCA');
 
   const subAssignment = () => {
     const desc = body;
     const inpt = input;
     const outpt = output;
+    const kourse = course;
     const datas = {
       title,
       desc,
       inpt,
-      outpt
+      outpt,
+      kourse
     }
     axios.get('/sanctum/csrf-cookie').then(response => {
       axios.post('/api/assignmentcreate',datas).then(res => {
@@ -78,6 +80,18 @@ const CreateAssignment = () => {
                 setOutput(e.target.value)
               }}
               />
+             <div className='input-boxes'>
+               <span>Course:</span>
+               <select name="" id="" onChange={e => {
+                 setCourse(e.target.value);
+                 console.log(course);
+               }}>
+                 <option value="BCA">BCA</option>
+                 <option value="MCA">MCA</option>
+               </select>
+               
+               </div> 
+
 
             </div>
             <div className='submit-con'> 

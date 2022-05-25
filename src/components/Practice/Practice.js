@@ -49,9 +49,21 @@ const Practice = () => {
         axios.get('/sanctum/csrf-cookie').then(response => {
           axios.post('/api/practice', bodies).then(res=>{
          
-            const codeOutput = res.data[0];
+            const codeOutput = res.data;
             console.log(codeOutput);
-            document.getElementById('prac-output').value = codeOutput;
+            document.getElementById('prac-output').value = res.data[0];
+            document.getElementById('prac-output').value += "\n";
+
+
+            codeOutput.forEach((item,index) => {
+              if(index < 1) return;
+              document.getElementById('prac-output').value += item;
+              document.getElementById('prac-output').value += "\n";
+            });
+
+
+      
+  
           })
         })
   
